@@ -1,0 +1,163 @@
+// 🎨 ChatGPT-style UI theme
+$primary-color: #0078ff;
+$bg-light: #f7f7f8;
+$bg-dark: #202123;
+$text-dark: #111;
+$text-light: #fff;
+$ai-bubble-bg: #e9e9eb;
+$user-bubble-bg: $primary-color;
+$border-color: #ddd;
+$font-family: "Inter", sans-serif;
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  background-color: $bg-light;
+  color: $text-dark;
+  height: 100vh;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .header {
+    background: $bg-dark;
+    color: $text-light;
+    padding: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .chat-container {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+
+    .empty-chat {
+      margin-top: 10%;
+      text-align: center;
+      color: #666;
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #777;
+      }
+    }
+
+    .messages {
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      scroll-behavior: smooth;
+
+      .message {
+        display: flex;
+        width: 100%;
+
+        &.user {
+          justify-content: flex-end;
+        }
+
+        &.ai {
+          justify-content: flex-start;
+        }
+
+        .bubble {
+          padding: 12px 16px;
+          border-radius: 12px;
+          max-width: 70%;
+          word-wrap: break-word;
+          font-size: 1rem;
+          line-height: 1.4;
+
+          &.user {
+            background: $user-bubble-bg;
+            color: $text-light;
+            border-bottom-right-radius: 0;
+          }
+
+          &.ai {
+            background: $ai-bubble-bg;
+            color: $text-dark;
+            border-bottom-left-radius: 0;
+          }
+        }
+      }
+
+      .typing {
+        background: $ai-bubble-bg;
+        padding: 10px 14px;
+        border-radius: 12px;
+        width: 40px;
+        animation: blink 1s infinite;
+      }
+    }
+  }
+
+  .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid $border-color;
+
+    textarea {
+      width: 70%;
+      max-width: 700px;
+      resize: none;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        border-color: $primary-color;
+      }
+    }
+
+    button {
+      margin-left: 10px;
+      padding: 10px 16px;
+      background: $primary-color;
+      color: $text-light;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background 0.3s;
+
+      &:hover {
+        background: darken($primary-color, 8%);
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.4;
+  }
+}
